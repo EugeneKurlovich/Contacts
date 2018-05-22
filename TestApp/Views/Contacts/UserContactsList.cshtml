@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model IEnumerable<Contact>
+<table class="table">
+    <tr>
+        <td>
+            Contact Name
+        </td>
+        <td>
+            Contact Surname
+        </td>
+        <td>
+            Contact Email
+        </td>
+        <td>
+            Telephone Number
+        </td>
+        <td>
+            Description
+        </td>
+        <td>
+            Edit
+        </td>
+        <td>
+            Delete
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.contactName </td>
+            <td> @item.contactSurname</td>
+            <td>@item.contactEmail</td>
+            <td>@item.telephoneNumber</td>
+            <td>@item.description</td>
+            <td>
+                <a href="~/Home/getEditPage/?id=@item.Id"> Edit </a>
+            </td>
+            <td>
+                <button class="btn btn-lg btn-success btn-block" onclick="deleteContact(@item.Id)">Delete</button>
+            </td>
+        </tr>
+    }
+</table>
+    </div>
+
+

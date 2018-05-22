@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "My Contacts";
+}
+<html>
+<head>
+    <h2>My Contacts</h2>
+    <script type="text/javascript">
+        function deleteContact(id) {
+            var url = "/api/v1/Contacts";
+            var data = {};
+            data.Id = id;
+            var json = JSON.stringify(data);
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = function (text) {
+                if (xhr.readyState == 4 && xhr.status == "200") {
+
+                } else {
+                    console.error(users);
+                }
+            }
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    console.log(xhr.responseText);
+                    document.getElementById('userContactsList').innerHTML = xhr.responseText;
+
+                }
+            }
+            xhr.send(json);
+        }
+    </script>
+</head>
+<body style="background-color:burlywood">
+    <div id="userContactsList">
+        @Html.Partial("UserContactsList", Model)
+    </div>
+</body>
+</html>
+
+

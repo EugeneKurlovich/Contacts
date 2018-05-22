@@ -1,0 +1,63 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Profile";
+}
+<html>
+<head>
+    <h2>My Profile</h2>
+    <script type="text/javascript">
+        function editUser() {
+            var url = "/api/v1/Users";
+            var data = {};
+            data.Id = document.getElementById("uId").value;
+            data.firstName = document.getElementById("fn").value;
+            data.lastName = document.getElementById("ln").value;
+            data.login = document.getElementById("lg").value;
+            data.password = document.getElementById("pw").value;
+            var json = JSON.stringify(data);
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.onload = function () {
+                var users = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    console.table(users);
+                } else {
+                    console.error(users);
+                }
+            }
+            xhr.send(json);
+        }
+      
+    </script>
+</head>
+<body style="background-color:burlywood">
+    <div style="display:inline-table">
+        <form method="put" asp-action="EditUser" asp-controller="Users">
+
+            <input type="hidden" id="uId" name="Id" value="@Model.Id">
+            Firstname
+            <input id="fn" type="text"  pattern="^[A-Za-zА-Яа-я]{4,15}$" name="firstName" class="form-control" value="@Model.firstName" autofocus required>
+
+            Lastname
+            <input id="ln" type="text" pattern="^[A-Za-zА-Яа-я]{4,15}$" name="lastName" class="form-control" value="@Model.lastName" autofocus required>
+
+            Login
+            <input id="lg" type="hidden" pattern="^[A-Za-z0-9]{4,10}$" name="login" class="form-control" value="@Model.login" autofocus required>
+
+            Password
+            <input id="pw" type="text" name="password" pattern="^[A-Za-z0-9]{4,10}$" class="form-control" value="@Model.password" autofocus required>
+
+            Ammount Contacts
+            @Model.ammountContacts
+
+
+        </form>
+        <button onclick="editUser()" class="btn btn-lg btn-success btn-block">Edit User</button>
+    </div>
+
+    
+</body>
+</html>
+
+

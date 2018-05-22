@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewData["Title"] = "Create Contact";
+}
+
+<html>
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+
+        body {
+            background-color: burlywood;
+        }
+
+        .jumbotron {
+            text-align: center;
+            width: 30rem;
+            border-radius: 0.5rem;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: 4rem auto;
+            background-color: burlywood;
+            padding: 2rem;
+        }
+
+        .container .glyphicon-list-alt {
+            font-size: 10rem;
+            margin-top: 3rem;
+            color: #f96145;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 1.4rem;
+            padding: 1rem;
+            background-color: #ecf2f4;
+            border-radius: 0.2rem;
+            border: none;
+        }
+
+        h2 {
+            margin-bottom: 3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn {
+            border-radius: 0.2rem;
+        }
+
+            .btn .glyphicon {
+                font-size: 3rem;
+                color: #fff;
+            }
+
+        .full-width {
+            background-color: #8eb5e2;
+            width: 100%;
+            -webkit-border-top-right-radius: 0;
+            -webkit-border-bottom-right-radius: 0;
+            -moz-border-radius-topright: 0;
+            -moz-border-radius-bottomright: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            <h2>Create Contact</h2>
+            <form method="post">
+                <br />
+                Contact Name : <input type="text" pattern="^[A-Za-zА-Яа-я]{2,15}$" name="contactName" placeholder="Ivan" required>
+                <br />
+                Contact Surname : <input type="text" pattern="^[A-Za-zА-Яа-я]{2,15}$" name="contactSurname" placeholder="Ivanov" required>
+                <br />
+                Contact Email : <input type="email" name="contactEmail" placeholder="Ivan@mail.ru" required>
+                <br />
+                Telephone Number : <input type="tel"  pattern="375[0-9]{9}"  name="telephoneNumber" placeholder="+375YYXXX-XX-XX" required>
+                <br />
+                Description : <input type="text" pattern="^[A-Za-zА-Яа-я0-9,\.\(\)\-]{1,25}$" name="description" placeholder="Vanya_sosed" required>
+                <br />
+                <input asp-controller="Contacts" asp-action="createContact" type="submit" value="Create" class="btn btn-lg btn-success btn-block">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
