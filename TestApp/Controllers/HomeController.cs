@@ -87,6 +87,18 @@ namespace Contact_List.Controllers
             return View("Profile", user);
         }
 
+        public IActionResult SearchContacts(string inputSearch)
+        {
+            var searchContacts = (from c in uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id)
+                                  where c.contactName.ToUpper().Contains(inputSearch.ToUpper()) ||
+    c.contactSurname.ToUpper().Contains(inputSearch.ToUpper()) ||
+    c.contactEmail.ToUpper().Contains(inputSearch.ToUpper()) ||
+     c.description.ToUpper().Contains(inputSearch.ToUpper()) ||
+      c.telephoneNumber.ToUpper().Contains(inputSearch.ToUpper()) 
+                                  select c).ToList();
+            return View("UserContacts", searchContacts);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

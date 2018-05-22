@@ -4,7 +4,6 @@
 }
 <html>
 <head>
-    <h2>My Contacts</h2>
     <script type="text/javascript">
         function deleteContact(id) {
             var url = "/api/v1/Contacts";
@@ -38,6 +37,7 @@
     <br />
     <br />
     <br />
+    <h2>My Contacts</h2>
     <div id="userContactsList">
         @Html.Partial("UserContactsList", Model)
     </div>
