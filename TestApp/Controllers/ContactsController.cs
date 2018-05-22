@@ -34,6 +34,7 @@ namespace Contact_List.Controllers
         {
             contact.UserId = uow.Users.getUserIdByLogin(User.Identity.Name).Id;
             uow.Contacts.Create(contact);
+            uow.Users.getUserIdByLogin(User.Identity.Name).ammountContacts++;
             uow.Save();
             return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id));
         }
@@ -51,6 +52,7 @@ namespace Contact_List.Controllers
         public IActionResult deleteContact([FromBody] Contact c)
         {
             uow.Contacts.Delete(c.Id);
+            uow.Users.getUserIdByLogin(User.Identity.Name).ammountContacts--;
             uow.Save();
             return PartialView("UserContactsList", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id));
         }
