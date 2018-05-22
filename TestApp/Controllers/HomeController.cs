@@ -27,6 +27,33 @@ namespace Contact_List.Controllers
         }
 
 
+        public IActionResult nameAsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderBy(c => c.contactName));
+        }
+        public IActionResult nameDsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderByDescending(c => c.contactName));
+        }
+
+        public IActionResult surnameAsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderBy(c => c.contactSurname));
+        }
+        public IActionResult surnameDsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderByDescending(c => c.contactSurname));
+        }
+
+        public IActionResult emailAsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderBy(c => c.contactEmail));
+        }
+        public IActionResult emailDsc()
+        {
+            return View("UserContacts", uow.Contacts.getContactsByUserId(uow.Users.getUserIdByLogin(User.Identity.Name).Id).OrderByDescending(c => c.contactEmail));
+        }
+
         private async Task Authenticate(string username)
         {
             var claims = new List<Claim>
